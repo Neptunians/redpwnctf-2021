@@ -817,7 +817,7 @@ Pretty nice!
 
 I saw someone in Discord (I remember being an organizer) saying that the replication could be the intended solution if he knew it, meaning the blind NoSQL was the planned one. But I could not locate the message anymore).
 
-### Overall Feeling
+# Overall Feeling
 
 Great CTF with some very creative challenges! (Mostly harder than my average poor solutions).
 
