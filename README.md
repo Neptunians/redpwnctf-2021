@@ -233,7 +233,7 @@ public static void createUser(Context ctx) {
 - Calls all the DB functions to Create DB, Create User and Add user to the new DB.
 - **INSERT THE FLAG IN YOUR DATABASE**
 
-Right, now we know that when you create a new user, it creates a dataase with the same name and inserts the flag there.
+Right, now we know that when you create a new user, it creates a database with the same name and inserts the flag there.
 We have to think on how to exfiltrate this data.
 
 Let's look at the "last" function and work from there (can't... look...more... Javaaaaa..).
@@ -300,7 +300,7 @@ Source: Same article above
 In fact, "@" and ":" delimits username and password, just like when accessing the CouchDB:
 
 ```bash
-$ curl http://admin:simples@couchdb:5984/_all_dbs
+$ curl http://admin:password@couchdb:5984/_all_dbs
 ["_replicator","_users","somedb","log"]
 ```
 
@@ -766,7 +766,7 @@ Ref/Anchor: 'null'
 User Info: 'null'
 ```
 
-java.net.URL has a bug when extracting the host part of a fake URL like that, making the Host component being null, bypassing the Host validation.
+java.net.URL has a bug when extracting the host part of a fake URL like that (with 2 '@'), making the Host component being null, bypassing the Host validation.
 
 If you just take a look at the OpenJDK implementation of URL parsing, you'll see a giant string parsing battle (I believe in you Orange Tsai).
 
@@ -808,12 +808,7 @@ if (urlURI.getHost().toLowerCase().contains("couchdb"))
         throw new ForbiddenResponse("Illegal!"); 
 ```
 
-An organizer called Jim confirmed the URL Madness in Java Libs as being the intended solution in the Discord channel (just found the message!).
-
-```
-Jim — 07/12/2021
-intended was to use a second @ and the httpcomponents lib parser is different with java parser
-```
+To bypass the Strikes Back, we use the URL madness, as hinted by the flag text.
 
 ### Flag Exfiltration
 
@@ -821,6 +816,12 @@ It looks like the intended solution here was not the replication, but a Blind No
 Pretty nice!
 
 I saw someone in Discord (I remember being an organizer) saying that the replication could be the intended solution if he knew it, meaning the blind NoSQL was the planned one. But I could not locate the message anymore).
+
+### Overall Feeling
+
+Great CTF with some very creative challenges! (Mostly harder than my average poor solutions).
+
+There was an awesome Discord bot challenge. If I had some six more months, I could have solved it. I swear!
 
 # References
 
