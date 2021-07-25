@@ -1,0 +1,1 @@
+curl https://requester.mc.ax/createUser?username=nep1\&password=nep1
